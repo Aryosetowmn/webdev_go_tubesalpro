@@ -60,23 +60,22 @@ func main(){
 	} else if optionInput == 3 {
 		fmt.Println("| 3. Tambah Data       |")
 		fmt.Println("+----------------------+")
-		for i := 0; i < len(usersData); i++ {
-			if usersData[i].id == 0 {
-				usersData[i].id = i+1
-				fmt.Print("Nama: ")
-				fmt.Scanln(&usersData[i].nama)
-				fmt.Print("Alamat: ")
-				fmt.Scanln(&usersData[i].alamat)
-				fmt.Print("NPWP: ")
-				fmt.Scanln(&usersData[i].npwp)
-				fmt.Print("Tier: ")
-				fmt.Scanln(&usersData[i].tier)
-				fmt.Print("Harta: ")
-				fmt.Scanln(&usersData[i].harta)
-				fmt.Print("Aset: ")
-				fmt.Scanln(&usersData[i].aset)
-				break
-			}
+		if dataCounter() < 100 {
+			usersData[dataCounter()].id = dataCounter()+1
+			fmt.Print("Nama: ")
+			fmt.Scanln(&usersData[dataCounter()-1].nama)
+			fmt.Print("Alamat: ")
+			fmt.Scanln(&usersData[dataCounter()-1].alamat)
+			fmt.Print("NPWP: ")
+			fmt.Scanln(&usersData[dataCounter()-1].npwp)
+			fmt.Print("Tier: ")
+			fmt.Scanln(&usersData[dataCounter()-1].tier)
+			fmt.Print("Harta: ")
+			fmt.Scanln(&usersData[dataCounter()-1].harta)
+			fmt.Print("Aset: ")
+			fmt.Scanln(&usersData[dataCounter()-1].aset)
+		} else {
+			fmt.Println("| Data Penuh!          |")
 		}
 		exitValidation()
 	} else if optionInput == 4 {
@@ -112,6 +111,18 @@ func main(){
 		fmt.Println("| Opsi Tidak Tersedia  |")
 		exitValidation()
 	}
+}
+
+// Data Counter
+func dataCounter() int {
+	var counter int
+	counter = 0
+	for i := 0; i < len(usersData); i++ {
+		if usersData[i].id != 0 {
+			counter++
+		}
+	}
+	return counter
 }
 
 // Basic Repetition
