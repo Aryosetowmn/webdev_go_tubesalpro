@@ -50,7 +50,6 @@ func main(){
 		fmt.Println("+----------------------+")
 		Descending(usersData)
 		exitValidation()
-		
 	} else if optionInput == 2 {
 		fmt.Println("| 2. Cari Data (Nama)  |")
 		fmt.Print("| Cari Pengguna: ")
@@ -103,7 +102,7 @@ func main(){
 		fmt.Print("| ID Pengguna: ")
 		fmt.Scanln(&tax)
 		fmt.Println("+----------------------+")
-		if usersData[tax].id == 0{
+		if usersData[tax-1].id == 0{
 			fmt.Println("| ID Tidak Ditemukan   |")
 		} else {
 			annualTax(usersData, tax)
@@ -115,6 +114,7 @@ func main(){
 	}
 }
 
+// Basic Repetition
 func ShowData(arr [100]userAtt){
 	for i := 0; i < len(arr); i++ {
 		if arr[i].id != 0 {
@@ -130,6 +130,7 @@ func ShowData(arr [100]userAtt){
 	}
 }
 
+// Bubble Sort Ascending
 func Ascending(arr [100]userAtt){
 	for i := 0; i < len(arr); i++ {
 		for j := 0; j < len(arr)-1; j++ {
@@ -141,6 +142,7 @@ func Ascending(arr [100]userAtt){
 	ShowData(arr)
 }
 
+// Bubble Sort Descending
 func Descending(arr [100]userAtt){
 	for i := 0; i < len(arr); i++ {
 		for j := 0; j < len(arr)-1; j++ {
@@ -152,6 +154,7 @@ func Descending(arr [100]userAtt){
 	ShowData(arr)
 }
 
+// Sequential Search
 func SearchData(arr [100]userAtt, search string){
 	for i := 0; i < len(arr); i++ {
 		if search == arr[i].nama {
@@ -167,6 +170,7 @@ func SearchData(arr [100]userAtt, search string){
 	}
 }
 
+//Sequential Search
 func EditData(arr *[100]userAtt, edit string){
 	for i := 0; i < len(arr); i++ {
 		if edit == arr[i].nama {
@@ -196,46 +200,18 @@ func EditData(arr *[100]userAtt, edit string){
 	}
 }
 
+//Sequential Search
 func DeleteData(arr *[100]userAtt, delete int){
-	//sort ascending
 	for i := 0; i < len(arr); i++ {
-		for j := 0; j < len(arr)-1; j++ {
-			if arr[j].harta > arr[j+1].harta {
-				arr[j], arr[j+1] = arr[j+1], arr[j]
-			}
+		if delete == arr[i].id {
+			arr[i].id = 0
+			arr[i].nama = ""
+			arr[i].alamat = ""
+			arr[i].npwp = 0
+			arr[i].harta = 0
+			arr[i].aset = 0
+			fmt.Println("| Delete Success!      |")
 		}
-	}
-
-	var left, mid, right int
-	left = 0
-	right = len(arr)-1
-	mid = right/2
-
-	for left<=right && arr[mid].id!=delete {
-		if delete<arr[mid].id {
-			right = mid-1 
-		} else {
-			left = mid+1
-		}
-		mid = (left+right)/2
-	}
-	
-	if arr[mid].id==delete {
-		for i:=mid; i<len(arr); i++{
-			if i+1 <= len(arr)-1 {
-				arr[i] = arr[i+1]
-			} else {
-				arr[i].id = 0
-				arr[i].nama = ""
-				arr[i].alamat = ""
-				arr[i].npwp = 0
-				arr[i].harta = 0
-				arr[i].aset = 0
-			}
-		}
-		fmt.Println("| Delete Success!      |")
-	} else {
-		fmt.Println("| Delete Failed!       |")
 	}
 }
 
@@ -260,6 +236,7 @@ func exitValidation(){
 	UHNWI - Ultra High Net Worth Individual 1M-100M, tax 10%
 	HNWI - High Net Worth Individual 100M-1B, tax 20%
 */
+//Sequential Search
 func annualTax(arr [100]userAtt, tax int){
 	var intConvert float64
 	for i := 0; i < len(arr); i++ {
