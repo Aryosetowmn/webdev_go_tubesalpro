@@ -143,8 +143,8 @@ func ShowData(arr [100]userAtt){
 
 // Bubble Sort Ascending
 func Ascending(arr [100]userAtt){
-	for i := 0; i < len(arr); i++ {
-		for j := 0; j < len(arr)-1; j++ {
+	for i := 0; i < len(arr)-1; i++ {
+		for j := 0; j < len(arr)-i-1; j++ {
 			if arr[j].harta > arr[j+1].harta {
 				arr[j], arr[j+1] = arr[j+1], arr[j]
 			}
@@ -155,8 +155,8 @@ func Ascending(arr [100]userAtt){
 
 // Bubble Sort Descending
 func Descending(arr [100]userAtt){
-	for i := 0; i < len(arr); i++ {
-		for j := 0; j < len(arr)-1; j++ {
+	for i := 0; i < len(arr)-1; i++ {
+		for j := 0; j < len(arr)-i-1; j++ {
 			if arr[j].harta < arr[j+1].harta {
 				arr[j], arr[j+1] = arr[j+1], arr[j]
 			}
